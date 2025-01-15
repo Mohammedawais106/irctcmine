@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word and Character Counter</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            padding: 50px 100px;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        h1 {
+            background: linear-gradient(45deg, #FF6347, #FF4500, #FFD700, #32CD32, #4169E1);
+            color: white;
+            padding: 20px;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Textarea Styles */
+        #text_area {
+            width: 85vw;
+            height: 150px;
+            padding: 15px;
+            font-size: 20px;
+            color: #fff;
+            background-color: #333;
+            border: 2px solid #555;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            resize: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #text_area:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        /* Counter Styles */
+        h2 {
+            background: linear-gradient(45deg, #FF6347, #FF4500, #FFD700, #32CD32, #4169E1);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        /* Animation on input */
+        @keyframes gradientAnimation {
+            0% {
+                background: linear-gradient(45deg, #FF6347, #FF4500);
+            }
+            25% {
+                background: linear-gradient(45deg, #FFD700, #32CD32);
+            }
+            50% {
+                background: linear-gradient(45deg, #4169E1, #FF6347);
+            }
+            75% {
+                background: linear-gradient(45deg, #FF4500, #FFD700);
+            }
+            100% {
+                background: linear-gradient(45deg, #32CD32, #4169E1);
+            }
+        }
+
+        h2 {
+            animation: gradientAnimation 3s ease infinite;
+        }
+
+        /* Media Queries for Responsive Design */
+        /* Mobile screens */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 20px 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+                padding: 15px;
+            }
+
+            #text_area {
+                width: 90vw;
+                height: 120px;
+                font-size: 18px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Very small screens (e.g., phones in portrait mode) */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding: 10px;
+            }
+
+            #text_area {
+                width: 95vw;
+                height: 100px;
+                font-size: 16px;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Word and Character Counter <br> Made by Er Awais</h1>
+    <textarea id="text_area" placeholder="Start typing here..."></textarea>
+    <h2>
+         <span id="word">0</span> words and 
+         <span id="char">0</span> characters
+    </h2>
+
+    <script>
+        let textbox = document.getElementById('text_area');
+        textbox.addEventListener('input', function() {
+            let text = this.value;
+            let char = text.length;
+            document.getElementById('char').innerHTML = char;
+
+            // Word counting logic
+            text = text.trim();
+            let words = text.split(/\s+/); // This splits on any whitespace
+            let cleanList = words.filter(function(elm) {
+                return elm !== "";
+            });
+            let words_split = cleanList.length;
+            document.getElementById('word').innerHTML = words_split;
+        });
+    </script>
+
+</body>
+</html>
